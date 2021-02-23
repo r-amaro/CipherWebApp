@@ -1,0 +1,53 @@
+
+  /* On mouse-over */
+  .btn_encrypt:hover, .btn_decrypt:hover {color: rgb(15, 53, 97);}
+
+body {
+    background-color: rgba(35, 125, 155, 0.137);
+    background-image: url("beach.jpg");
+    background-repeat:no-repeat;
+    height: auto;
+    width: auto;
+  }
+
+  h1{
+    text-align: center;
+    font-size: 65px;
+  }
+
+  .btn_encrypt, .btn_decrypt{
+    border: none;
+    background-color: gray;
+    padding: 14px 28px;
+    font-size: 25px;
+    cursor: pointer;
+    display: inline-block;
+    color: rgb(241, 240, 240);
+  }
+
+  #buttons{
+    transform: translate(0px, 10vh);
+    text-align: center;
+  }
+
+  #form-main{
+    padding: 14px 28px;
+    font-size: 25px;
+    text-align: center;
+    text-shadow: 0px 2px 10px #ffffff;
+  }
+  
+  #key-group{
+    font-size: smaller;
+    transform: translate(0px, 0vh);
+    margin: 5px;
+    text-shadow: 0px 2px 10px #ffffff;
+  }
+
+  #form-list{
+  padding: 14px 28px;
+  font-size: 25px;
+  text-align: left;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0, 0.3);
+}

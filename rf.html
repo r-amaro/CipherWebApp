@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>    
+    <link rel="stylesheet" href="rf.css">
+  </head>
+  <body>
+    <h1>Encryptor</h1>
+
+    <div class='form-box' data-errormsg='' id="form-list">
+      <form id="forms" action="#">
+        <input type="radio" id="rfc" name="cypher" value="rail-fence" checked>
+        <label for="rail-fence">Rail Fence</label><br>
+      </form>
+    </div>
+
+    <div id="form-main">
+      <!--Action="#" means the content will be sent to this very same page-->
+      <form id="forms" action="#">
+        <label for="ptext">Plain text:</label><br>
+        <input type="text" id="ptext" name="ptext" placeholder="Enter Regular Text"><br><br>
+
+        <label for="ctext">Cypher text:</label><br>
+        <input type="text" id="ctext" name="ctext" placeholder="Enter Encrypted Text"><br><br><br>
+
+        <div id="key-group">
+          <label for="key">Key:</label>
+          <input type="number" id="key" name="key" min="2" max="5"><br>
+        </div>
+      </form> 
+    </div>
+    
+    <div id="buttons">
+      <button id="encryptB" form="forms" class="btn_encrypt">Encrypt</button>
+      <button id="decryptB" form="forms" class="btn_decrypt">Decrypt</button>
+    </div>
+    
+    <script src="./rf.js"></script>
+  </body>
+</html>
