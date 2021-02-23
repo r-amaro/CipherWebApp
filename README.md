@@ -1,3 +1,2 @@
 # CipherWebApp
-HTML, CSS, JS
-Rail Fence Cipher
+Rail Fence Cipher: HTML, CSS, JS
