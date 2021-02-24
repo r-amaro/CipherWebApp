@@ -52,12 +52,22 @@ function encrypt(ev){
         }
 
         //Add each row of array together
-        var cipher = new Array(plain.length)
-        for(let i = 0; i < (key-1); i++){
-            cipher = array[i][0]
+        var final = new Array(plain.length);
+        row = 0;
+        while(row != key){
+            //Grabs the same level of column for each row
+            for(let i = 0; i < plain.length; i++){
+                //Checks if contents of secondary array position is empty/undefined/null
+                if(array[i][row] != null){
+                    //if element exists, add it to the final array
+                    final.push(array[i][row]);
+                }
+            }
+            //goes to the next row in each secondary, incapsulated array
+            row++;
         }
-        
-        document.getElementById("ctext").value = cipher;
+
+        document.getElementById("ctext").value = final;
         
     }
     else{
