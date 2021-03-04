@@ -1,4 +1,3 @@
-# CipherWebApp
-Rail Fence Cipher: HTML, CSS, JS
+A web application using HTML, CSS, and JS to encrypt and decrypt text. As of now the 'Rail Fence Cipher' is the only cipher encorporated.
 
-NOTE: Decryption not yet complete.
+FUTURE PLANS: Add more Ciphers as options in the form of radio buttons.
