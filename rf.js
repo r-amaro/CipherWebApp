@@ -81,36 +81,25 @@ function decrypt() {
 
     //  Creates the 2D Array depending on size of plaintext & key.
     var array = Array.from(Array(ctext.length), () => new Array(key))
-
-    //  logic for the top
-    if(row === t){
-        var top = true;
-    }else{
-        top = false;
+    //fills array with stars *
+    for(var i = 0; i < ctext.length; i++){
+        for(let j = 0; j < key; j++){
+            array[i][j] = '*';
+        }
     }
 
-
-    //  logic for the bottom
-    if(row === (key-1)){
-        var bottom = true;
-    }else{
-        bottom = false;
-    }
-
-    while(counter < ctext.length){
+    while(counter !== ctext.length){   // while loop closes if counter equals the cipher text
         //  Fills top row only in array with the cipher text, except the last time.
         for(var i = 0; i < array.length; i++){
 
-            //  Checks if at the top.
-            if(top){
+            
+            if(row === t){  //  Checks if at the affected row.
                 // prints character
                 array[i][row] = ctext[counter];
                 counter++;
-                alert(counter);
-                down = true;
-            }
-            else if(!top){
-                if(array[i][row] === "undefined"){
+            } 
+            else{
+                if(array[i][row] === '*'){
                     array[i][row] = "-";
                 }
             }
@@ -118,30 +107,36 @@ function decrypt() {
             //  Checks for down direction.
             if(down === true){
                 
-                //  Checks for the bottom row.
-                if(bottom){
+                //  If not the bottom row.
+                if(row !== (key-1)){
+                    row++;  //sets to the below row.
+                }
+                else{ // If bottom
                     //redirect
                     var down = false;
-                    row--;  //sets to the below row.
-                }else{
-                    row++;
+                    row--;  //sets to the above row.
                 }
             }
-            //  Checks for up direction.
-            else if(down === false){
-                row--;  //sets to the above row.
+            //  If up direction.
+            else{
+                //  If not the top row.
+                if(row !== 0){
+                    row--;  //sets to the above row.
+                }
+                else{   //  If top
+                    down = true;
+                    row++;  //sets to the below row.
+                }
             }
-            alert(array);
         }
 
         t++;    //Shifts the top, one row lower.
-        row = 0;
-        down = true;
-        i = 0;
 
-        //  Last Print Run
-        if(top && bottom){
-
+        //  Last Print Run (top = bottom)
+        if(t === key-1){
+            row = 0;
+            down = true;
+            i = 0;
             //  Fills array with the cipher text for last row.
             for(var i = 0; i < array.length; i++){
                 
@@ -153,8 +148,6 @@ function decrypt() {
                         //Continues writing out the cipher text.
                         array[i][row] = ctext[counter];
                         counter++;
-                        alert(counter);
-                        alert(array[i][row]);
                         //top = bottom, so index is at the bottom.
                         down = false;
                         row--;  //sets to the above row.
@@ -163,9 +156,8 @@ function decrypt() {
                         row++;  //sets to the bellow row.
                     }
                 }
-
                 //Checks for up direction.
-                else if(down === false){
+                else{
                     //Checks if back at the first row.
                     if(row === 0){
                         var down = true;    //redirect
@@ -176,12 +168,16 @@ function decrypt() {
                 }
             }
         }
-    }
+        else{ // Reset
+            row = 0;
+            down = true;
+            i = 0;
+        }
+    }   // while loop closes if counter equals the cipher text
 
     //  Final array picking up the plain text.
     var  final = new Array(ctext.length);
     counter = 0;
-    alert(counter);
     row = 0;
     t = 0;
     down = true;
@@ -189,34 +185,36 @@ function decrypt() {
     //Reads diagonally
     for(var i = 0; i < array.length; i++){
         //  Checks for down direction.
-        if(down === true && array[i][row] !== undefined){
-            //puts character into final array.
-            final[counter] = array[i][row];
-            counter++;
-            alert(counter);
-            if(bottom){
+        if(down === true){
+            if(array[i][row] !== '-' || array[i][row] !== '*'){
+                //puts character into final array.
+                final[counter] = array[i][row];
+                counter++;
+            }
+            if(row !== (key-1)){    //  If not bottom
+                row++;  //set to the below row.
+            }
+            else{   //  If bottom
                 var down = false;   //redirect
                 row--;  //sets to the above row.
-            }else{
-            row++;  //sets to the bellow row.
             }
         }
         //  Checks for up direction.
-        else if(down === false && array[i][row] !== undefined){
-            //puts character into final array.
-            final[counter] = array[i][row];
-            counter++;
-            alert(counter);
-            if(top){
+        else{
+            if(array[i][row] !== '-' || array[i][row] !== '*'){
+                //puts character into final array.
+                final[counter] = array[i][row];
+                counter++;
+            }
+            if(row !== 0){  //  If not top
+                row--;  //sets to the above row.
+                
+            }else{  //  If top
                 //redirect
                 var down = true;
                 row++;  //sets to the bellow row.
-            }else{
-            row--;  //sets to the above row.
             }
         }
-        else
-            alert("error with reading");
     }
     
     //  Changes final array into a string and removes commas.
