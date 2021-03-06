@@ -1,13 +1,17 @@
+let btnE = document.querySelector('#encryptB')
+let btnD = document.querySelector('#decryptB')
+
 function init() {
-    document.getElementById('encryptB').addEventListener('click', encrypt);
-    document.getElementById('decryptB').addEventListener('click', decrypt);
+    btnE.addEventListener('click', encrypt);
+    btnD.addEventListener('click', decrypt);
 }
 
 
-function encrypt(){
-    var key = document.getElementById("key").value;
+function encrypt(event){
+    event.preventDefault();
+    var key = document.querySelector("#key").value;
     key = parseInt(key, 10);
-    var plain = document.getElementById("ptext").value;
+    var plain = document.querySelector("#ptext").value;
     var down = true;
     var row = 0;
 
@@ -67,13 +71,14 @@ function encrypt(){
     //  Changes final array into a string and removes commas.
     final = final.toString();
     final = final.replace(/,/g, '') 
-    document.getElementById("ctext").value = final;
+    document.querySelector("#ctext").value = final;
 }
 
-function decrypt() {
-    var key = document.getElementById("key").value;
+function decrypt(event) {
+    event.preventDefault();
+    var key = document.querySelector("#key").value;
     key = parseInt(key, 10);
-    var ctext = document.getElementById("ctext").value;
+    var ctext = document.querySelector("#ctext").value;
     var down = true;
     var row = 0;
     var t = 0;
@@ -220,7 +225,7 @@ function decrypt() {
     //  Changes final array into a string and removes commas.
     final = final.toString();
     final = final.replace(/,/g, '') 
-    document.getElementById("ptext").value = final;
+    document.querySelector("#ptext").value = final;
 }
 
 document.addEventListener('DOMContentLoaded', init);
